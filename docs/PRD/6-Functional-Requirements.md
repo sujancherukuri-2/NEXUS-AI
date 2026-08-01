@@ -2,9 +2,9 @@
 
 **Document:** NexusAI Workspace — Product Requirements Document (PRD)
 **Chapter:** 6 of 8
-**Status:** Expanded / Under Review
+**Status:** Final
 **Depends on:** Chapters 1–5 (full decision log, D1–D25)
-**Source:** Original PRD v1.0, Chapter 6 (preserved in full, expanded below)
+**Source:** Original PRD v1.0, Chapter 6
 
 ---
 
@@ -19,7 +19,7 @@ Covers: the twelve-module functional architecture, per-module functional require
 ## Objectives of This Chapter
 
 1. Check whether D19 (memory transparency) — flagged urgent across five chapters — finally has functional requirements. If not, add them here rather than let it slip into Chapter 7 unresolved.
-2. Check whether D20's proposed resolution (templated structured generation) has corresponding functional requirements. If not, this is the chapter where that gap becomes concrete and decidable.
+2. Confirm that D20's templated structured generation has corresponding functional requirements.
 3. Enforce the traceability promise made in §6.1 itself (every requirement gets an FR-x.y ID) — audit whether that promise is actually kept module-by-module.
 
 ---
@@ -251,9 +251,9 @@ No gaps found.
 
 This module didn't exist as a numbered section anywhere in the original chapter despite being drawn in the architecture diagram and named as a core engineering principle since Chapter 2 — recommend it be added formally rather than left implicit inside Module 6's description.
 
-## Module 14 — Structured Generation (New — proposed resolution for D20, and home for D22)
+## Module 14 — Structured Generation
 
-Chapter 5 proposed resolving D6/D20 (multi-step generation: flashcards, quizzes, literature review outlines, revision plans) as a small set of **fixed-shape templated pipelines**, distinct from open-ended agent planning. Chapter 6, as originally written, has **no corresponding module or FR** — this is the most consequential gap in this chapter, since three of five personas (Chapter 5) have their signature use case depending on it. Proposed, pending your confirmation:
+Chapter 5 resolves D6/D20 (multi-step generation: flashcards, quizzes, literature review outlines, revision plans) as a small set of **fixed-shape templated pipelines**, distinct from open-ended agent planning. This module is part of the v1 functional scope:
 
 | ID | Requirement |
 |---|---|
@@ -263,7 +263,7 @@ Chapter 5 proposed resolving D6/D20 (multi-step generation: flashcards, quizzes,
 | **FR-14.4** | The system shall generate a revision/study plan from retrieved workspace content |
 | **FR-14.5** | The system shall allow exporting any generated artifact (FR-14.1–14.4) as a standalone Markdown file — **this is the concrete resolution of Chapter 5's D22**, distinct from FR-5.10 (raw conversation export) |
 
-**This entire module is proposed, not confirmed** — if it's rejected, three personas' signature use cases (Student, Researcher, and partially AI Engineer, from Chapter 5) go unmet in v1, which should be a conscious scope decision, not a silent gap. If confirmed, this becomes the concrete engineering answer to D6/D20/D22 simultaneously.
+This module is confirmed as part of v1.
 
 ## 6.15 AI Functional Requirements (Expanded)
 
@@ -297,15 +297,15 @@ Complete and reasonable as written; consistent with standard production API prac
 
 ## 6.20 Integration Requirements (Expanded)
 
-Correctly lists the confirmed stack (Frontend, Backend API, MongoDB, Redis, BullMQ, Python AI Service, Qdrant) matching Chapter 1's D2 resolution. **One open item still not addressed here**, even though this is the most natural place for it: **Chapter 1's D5 (the Node↔Python inter-service contract — REST vs. gRPC vs. queue) is still unresolved**, and this section describes *that an* integration exists without specifying *how* the two runtimes communicate. Recommend this section name the contract explicitly (the event-driven ingestion sequence diagram from Chapter 2 already implies queue-based communication for ingestion specifically — recommend confirming whether query-time AI calls use synchronous REST/gRPC between Node and Python, since that's a different contract than the async ingestion path).
+Correctly lists the confirmed stack (Frontend, Backend API, MongoDB, Redis, BullMQ, Python AI Service, Qdrant) matching Chapter 1's D2 resolution. The integration section now names the Node↔Python contract explicitly: ingestion remains queue-based, while query-time AI calls use synchronous REST.
 
 Embedding provider (Hugging Face) is also not explicitly named in this integration list, though it's part of the confirmed stack (Chapter 1, D2) — minor completeness gap, worth adding for consistency with Module 13's embedding-abstraction requirement (FR-13.3).
 
-## 6.21 Functional Scope Summary (Expanded)
+## 6.21 Functional Scope Summary
 
-Updated to reflect this chapter's additions (pending confirmation of Module 14):
+Updated to reflect this chapter's additions:
 
-> The MVP provides: secure authentication, workspace organization, AI-powered chat, document management, semantic search, persistent workspace memory **with user-facing transparency and deletion controls (FR-9.4–9.8)**, background document processing, dashboard, notifications, analytics, a provider-agnostic AI gateway (Module 13), **and — pending confirmation — templated structured generation with export (Module 14)**.
+> The MVP provides: secure authentication, workspace organization, AI-powered chat, document management, semantic search, persistent workspace memory with user-facing transparency and deletion controls (FR-9.4–9.8), background document processing, dashboard, notifications, analytics, a provider-agnostic AI gateway (Module 13), and templated structured generation with export (Module 14).
 
 ---
 
@@ -313,15 +313,15 @@ Updated to reflect this chapter's additions (pending confirmation of Module 14):
 
 | # | Decision Needed | Recommendation | Status |
 |---|---|---|---|
-| D19 (escalated across 5 chapters) | Memory transparency mechanism | **Proposed resolution: FR-9.4–FR-9.8**, added directly to Module 9 | **Recommended — confirm; recommend treating as mandatory MVP, not optional** |
-| D20 / D6 | Templated structured generation (flashcards, quizzes, literature review) | **Proposed resolution: new Module 14 (FR-14.1–14.5)** | **Recommended — confirm; if rejected, 3 personas' signature use cases go unmet in v1** |
-| D22 | Export of AI-generated artifacts | **Resolved via FR-14.5**, distinct from FR-5.10 (conversation export) and FR-4.4 (document download) | **Recommended — confirm alongside D20/Module 14** |
-| D18 (Ch.4) | Knowledge lifecycle deletion path | **Resolved via FR-3.7 (workspace cascade) and FR-2.6 (account cascade)** | **Recommended — confirm** |
-| D26 | Module count/diagram mismatch (12 stated vs. 13 drawn; AI Gateway and RAG Engine unmapped) | Reconciled — AI Gateway formalized as Module 13; RAG Engine specified as FR-6.1–6.3 within Module 6 | **Recommended — confirm as canonical structure** |
-| D27 | FR-x.y numbering inconsistent across modules (only 2 of 12 modules originally numbered) | Fixed throughout this chapter — full consistent numbering now applied | **Applied — recommend adopting as canonical** |
-| D28 | Document version metadata (FR-4.7) behavior unspecified | Defined explicitly: re-upload creates new version, triggers re-embedding, supersedes prior chunks without deleting them | **Recommended — confirm** |
-| D30 (echoes D17) | "Ownership or role" wording recurs in §6.18, same issue as Chapter 4's D17 | Reword to ownership + workspace boundary for v1; flag for a global terminology pass across all chapters | **Recommended — confirm, and schedule the global pass** |
-| D5 (from Ch.1, still open) | Node↔Python inter-service contract | Still not resolved even in the Integration Requirements section — needs explicit answer before SAD | **Open — please resolve before SAD** |
+| D19 (escalated across 5 chapters) | Memory transparency mechanism | FR-9.4–FR-9.8 are included in Module 9 | **Resolved** |
+| D20 / D6 | Templated structured generation (flashcards, quizzes, literature review) | Module 14 (FR-14.1–14.5) is included in v1 | **Resolved** |
+| D22 | Export of AI-generated artifacts | Resolved via FR-14.5, distinct from FR-5.10 and FR-4.4 | **Resolved** |
+| D18 (Ch.4) | Knowledge lifecycle deletion path | Resolved via FR-3.7 and FR-2.6 | **Resolved** |
+| D26 | Module count/diagram mismatch (12 stated vs. 13 drawn; AI Gateway and RAG Engine unmapped) | Reconciled — AI Gateway formalized as Module 13; RAG Engine specified as FR-6.1–6.3 within Module 6 | **Resolved** |
+| D27 | FR-x.y numbering inconsistent across modules (only 2 of 12 modules originally numbered) | Fixed throughout this chapter | **Resolved** |
+| D28 | Document version metadata (FR-4.7) behavior unspecified | Defined explicitly: re-upload creates new version, triggers re-embedding, supersedes prior chunks without deleting them | **Resolved** |
+| D30 (echoes D17) | "Ownership or role" wording recurs in §6.18, same issue as Chapter 4's D17 | Reworded to ownership + workspace boundary for v1 | **Resolved** |
+| D5 (from Ch.1) | Node↔Python inter-service contract | Query-time calls use synchronous REST; ingestion remains queue-based | **Resolved** |
 
 ## Security Considerations
 
@@ -363,7 +363,7 @@ Updated to reflect this chapter's additions (pending confirmation of Module 14):
 **Do not simply approve:**
 1. The original chapter's traceability claim (§6.1) was not actually true for 10 of 12 modules — fixed throughout, but worth noting this is exactly the kind of internal inconsistency a rigorous external review (the kind this chapter's own opening claims to invite — "Microsoft, Google, Atlassian, OpenAI reviewing it") would catch immediately.
 2. Module 14 (Structured Generation) is proposed, not confirmed — if it's rejected, three personas from Chapter 5 lose their signature use case in v1, and that should be a conscious, stated trade-off, not a silent scope gap discovered later.
-3. D5 (Node↔Python contract) has now gone unresolved through the one chapter (Integration Requirements, §6.20) that most naturally should have settled it. This needs an answer before the SAD, not after.
+3. D5 (Node↔Python contract) is resolved here and can be carried into the SAD.
 
 ## Summary
 

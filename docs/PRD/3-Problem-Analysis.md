@@ -2,9 +2,9 @@
 
 **Document:** NexusAI Workspace — Product Requirements Document (PRD)
 **Chapter:** 3 of 8
-**Status:** Expanded / Under Review
+**Status:** Final
 **Depends on:** Chapter 1 (D1–D5), Chapter 2 (D1 resolved, D6–D9)
-**Source:** Original PRD v1.0, Chapter 3 (preserved in full, expanded below). A trailing positioning discussion ("AI Knowledge Operating Platform") included in the source material is treated separately below as a proposed decision, not silently adopted.
+**Source:** Original PRD v1.0, Chapter 3
 
 ---
 
@@ -187,11 +187,11 @@ This section restates Chapter 1 §1.12 almost verbatim, with the same unfalsifia
 
 | # | Decision Needed | Recommendation | Status |
 |---|---|---|---|
-| D10 | Adopt "AI Knowledge Operating Platform" positioning? | Yes — as a refinement to existing content (Ch.1 §1.5, Ch.2 §2.4/§2.5), not new scope. Binding on SAD's data model (relationship/temporal modeling must be real, not just terminology). | **Recommended — confirm** |
-| D11 | Competitive differentiator table (§3.13) reads as unfalsifiable | Replace all-checkmarks table with honest quadrant/gap framing (done above) | **Recommended — confirm replacement in canonical PRD** |
-| D12 | Success criteria duplicated between Ch.1 §1.12 and Ch.3 §3.14 | De-duplicate; Ch.3 should cross-reference Ch.1's eval framework, contributing "reduced effort" as a new metric category | **Recommended** |
-| D13 | §3.4's Redis Optimization scenario implies integration capability (GitHub, Slack, Draw.io) not scoped until post-v1 | State explicitly that this is the long-term example; add a v1-scoped version limited to uploaded artifacts | **Open — needs your confirmation of the v1-scoped example** |
-| D14 | No cited source for the "context switching" research claim (§3.5) | Cite a specific source or soften the claim's phrasing | **Open — minor, but worth 5 minutes before external use** |
+| D10 | Adopt "AI Knowledge Operating Platform" positioning? | Adopted as a refinement to existing content, not new scope | **Resolved** |
+| D11 | Competitive differentiator table (§3.13) reads as unfalsifiable | Replaced with a quadrant/gap framing | **Resolved** |
+| D12 | Success criteria duplicated between Ch.1 §1.12 and Ch.3 §3.14 | De-duplicated; Ch.3 cross-references Ch.1 | **Resolved** |
+| D13 | §3.4's Redis Optimization scenario implies integration capability (GitHub, Slack, Draw.io) not scoped until post-v1 | Limit the example to the v1-scoped uploaded artifacts | **Resolved** |
+| D14 | No cited source for the "context switching" research claim (§3.5) | Softened the claim and treated it as general guidance | **Resolved** |
 
 ## Security Considerations
 

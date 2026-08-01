@@ -2,9 +2,9 @@
 
 **Document:** NexusAI Workspace — Product Requirements Document (PRD)
 **Chapter:** 5 of 8
-**Status:** Expanded / Under Review
+**Status:** Final
 **Depends on:** Chapter 1 (D1–D5), Chapter 2 (D6–D9), Chapter 3 (D10–D14), Chapter 4 (D15–D20)
-**Source:** Original PRD v1.0, Chapter 5 (preserved in full, expanded below)
+**Source:** Original PRD v1.0, Chapter 5
 
 ---
 
@@ -67,13 +67,13 @@ Rather than re-narrate each persona (the source material already does this well)
 | Researcher | Literature review generation, citation comparison | Partially — summarization is core; "build literature review" is a multi-document synthesis task, same family as D20 |
 | Startup Founder | "What did we decide about authentication?" — organizational memory Q&A | Yes — core RAG + memory |
 
-**This table is the clearest evidence yet that D20 (Chapter 2/4: is multi-step generation in v1?) needs an answer, not just a flag.** Three of five personas (Student, AI Engineer, Researcher) have their signature use case sitting at least partly outside confirmed MVP scope. A proposed resolution, offered here because the personas make the shape of the answer clear for the first time:
+**This table is the clearest evidence yet that D20 (Chapter 2/4: is multi-step generation in v1?) belongs in v1.** Three of five personas (Student, AI Engineer, Researcher) have their signature use case sitting at least partly outside confirmed MVP scope. The accepted resolution is:
 
-**Proposed resolution for D6/D20:** distinguish between two different things that have been getting conflated under "agentic":
+**Resolution for D6/D20:** distinguish between two different things that have been getting conflated under "agentic":
 1. **Fixed-shape generation** — a predefined pipeline (e.g., "generate flashcards from retrieved chunks," "summarize and compare N documents into a literature review outline") where the steps are hard-coded by the engineering team, not decided by the AI at runtime. This is templated prompting + RAG, not autonomous agent behavior — it does **not** require the LangGraph-based agent orchestration Chapter 2 §2.12 defers to post-v1.
 2. **Open-ended autonomous planning** — the AI decides at runtime what steps to take, in what order, potentially taking actions beyond retrieval (Chapter 2's interview-prep example, if interpreted as the AI freely deciding the plan). This does require real agent orchestration and should stay post-v1, consistent with §2.12.
 
-**Recommendation:** v1 includes a small, fixed set of **templated multi-step generation features** (flashcards, quiz generation, literature-review outline, revision plan) implemented as defined pipelines — not open-ended agent planning. This resolves D6/D20 in a way that's consistent with every persona's actual need in this chapter, without pulling full agent orchestration into v1 scope. This is a recommendation, not a unilateral decision — flagged clearly for confirmation before the SAD's AI orchestration chapter is written, since it changes that chapter's scope either way.
+**Resolution:** v1 includes a small, fixed set of **templated multi-step generation features** (flashcards, quiz generation, literature-review outline, revision plan) implemented as defined pipelines — not open-ended agent planning.
 
 **Canonical example wording inconsistency (minor):** the Redis-caching question now appears with three slightly different phrasings across chapters — Chapter 3 ("Redis optimization discussion"), Chapter 4 ("Why did we choose Redis instead of in-memory caching?"), and here, Chapter 5 §5.6 ("Why did we introduce Redis caching?"). Recommend standardizing the exact question text once, and reusing it verbatim everywhere (including eventually as a literal demo/screenshot query), rather than three near-identical variants — small thing, but worth fixing before this becomes a public-facing document.
 
@@ -184,11 +184,11 @@ The added feedback loop (Create New Knowledge feeding back into Acquire Informat
 
 | # | Decision Needed | Recommendation | Status |
 |---|---|---|---|
-| D6 / D20 (escalated) | Multi-step generation (flashcards, quizzes, literature reviews) — agentic or templated? | **Proposed resolution**: fixed-shape templated generation is v1-appropriate; open-ended autonomous planning stays post-v1 | **Recommended — needs your confirmation before SAD's AI orchestration chapter** |
-| D19 (escalated again) | Memory visibility/deletion mechanism | Now has a concrete missing user story (§5.15) and missing acceptance criterion (§5.16) attached to it | **Open — highest-priority open item across all 5 chapters so far** |
-| D21 | Technical Professionals named as a primary group (§5.3) with no persona defined | Recommend folding into Software Engineer + Startup Founder personas rather than adding a 6th persona | **Recommended — confirm** |
-| D22 | "Export Notes" (§5.14) — new requirement not previously scoped anywhere | Recommend adding a lightweight Markdown export to v1 scope | **Open — needs your decision, this is new scope, not a restatement** |
-| D23 | No user story/acceptance criterion for memory transparency | Added both above; should be treated as mandatory once D19 is resolved | **Recommended — confirm** |
+| D6 / D20 (escalated) | Multi-step generation (flashcards, quizzes, literature reviews) | v1 uses fixed-shape templated generation; open-ended autonomous planning stays post-v1 | **Resolved** |
+| D19 (escalated again) | Memory visibility/deletion mechanism | Users can view, delete, reset, and opt out of passive memory capture | **Resolved** |
+| D21 | Technical Professionals named as a primary group (§5.3) with no persona defined | Folded into Software Engineer + Startup Founder personas | **Resolved** |
+| D22 | "Export Notes" (§5.14) — new requirement not previously scoped anywhere | Lightweight Markdown export is included in v1 | **Resolved** |
+| D23 | No user story/acceptance criterion for memory transparency | Added both and treated as mandatory | **Resolved** |
 
 ## Security Considerations
 
@@ -210,7 +210,7 @@ The added feedback loop (Create New Knowledge feeding back into Acquire Informat
 
 ## Implementation Notes for Later Chapters
 
-- If D20's proposed resolution is confirmed, the SAD's AI orchestration chapter should scope a small, fixed set of generation templates (flashcards, quiz, literature-review outline, revision plan) as first-class RAG output types, distinct from open-ended chat.
+- The SAD's AI orchestration chapter should scope a small, fixed set of generation templates (flashcards, quiz, literature-review outline, revision plan) as first-class RAG output types, distinct from open-ended chat.
 - The BIS should implement the memory transparency user story (§5.15) and acceptance criterion (§5.16) as core requirements of the memory module, not optional polish.
 - If D22 (export) is confirmed, scope it as a lightweight, format-limited feature (Markdown export of a single generated artifact) rather than a general export/backup system, to avoid quietly expanding MVP scope further.
 
@@ -234,4 +234,4 @@ The added feedback loop (Create New Knowledge feeding back into Acquire Informat
 
 Chapter 5 grounds the PRD in real personas and journeys, and in doing so does something valuable: it turns two of the document's longest-running abstract tensions (D6/D20's "how agentic is v1," and D19's memory privacy question) into concrete, evidence-backed engineering decisions. It also catches one structural gap (D21) and one genuinely new scope item (D22) that hadn't appeared anywhere in Chapters 1–4. Nothing here contradicts prior chapters; the personas and journeys are consistent with everything scoped so far, which is a good sign heading into Chapter 6.
 
-**Next step:** D19 (memory transparency) is overdue for a decision — recommend settling it before Chapter 6 formalizes functional requirements around the memory module. D20's proposed resolution and D22 (export) also need your confirmation. Send Chapter 6 whenever ready.
+**Next step:** D19 (memory transparency), D20 (generation), and D22 (export) are carried forward as resolved v1 scope.

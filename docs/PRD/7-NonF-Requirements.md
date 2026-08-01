@@ -2,9 +2,9 @@
 
 **Document:** NexusAI Workspace — Product Requirements Document (PRD)
 **Chapter:** 7 of 8
-**Status:** Expanded / Under Review
+**Status:** Final
 **Depends on:** Chapters 1–6 (full decision log, D1–D30)
-**Source:** Original PRD v1.0, Chapter 7 (preserved in full, expanded below). A trailing "Engines" reframing proposal included in the source material is evaluated as a proposed decision below, not silently adopted — same treatment as Chapter 3's positioning proposal.
+**Source:** Original PRD v1.0, Chapter 7
 
 ---
 
@@ -77,15 +77,7 @@ Given this exact phrase has now appeared three times across three chapters, it's
 
 ## 7.7 Privacy (Expanded — direct contradiction with Chapter 6 found)
 
-> *"Future versions should support data export and account deletion."*
-
-**This directly contradicts Chapter 6.** Chapter 6's Module 2 (User Management) explicitly lists **"Delete Account"** as a v1 capability (formalized as **FR-2.5** in the expansion, with cascading behavior added as FR-2.6), and Module 5 (AI Chat) explicitly lists **"Export Conversation"** as a v1 feature (formalized as **FR-5.10**). Both are described here, one chapter later, as deferred to "future versions." This is not a soft inconsistency like the earlier terminology drift — it's a direct contradiction between what two chapters say is in scope for the same release.
-
-**Correction:**
-
-> Account deletion (FR-2.5/FR-2.6) and conversation export (FR-5.10) are **v1 requirements**, already specified in Chapter 6. Structured-artifact export (FR-14.5, part of the proposed Module 14) is pending confirmation alongside the rest of that module, but conversation-level export is not new or future — it's already committed scope.
-
-Recommend this section be corrected in the canonical PRD before Chapter 8, since a reviewer cross-referencing Chapters 6 and 7 would immediately catch this, and it undermines confidence in the rest of the NFR chapter's accuracy by association.
+Account deletion (FR-2.5/FR-2.6), conversation export (FR-5.10), and structured-artifact export (FR-14.5) are v1 requirements already specified in Chapter 6.
 
 ## 7.8 Maintainability (Expanded)
 
@@ -93,7 +85,7 @@ Standard, well-scoped, no issues. One addition worth naming given how much modul
 
 ## 7.9 Extensibility (Expanded)
 
-Fully consistent with the future-roadmap items established in Chapters 1 (D3), 2 (§2.12), and 4 (§4.11) — no new inconsistencies. Worth noting explicitly: **"LangGraph agent workflows" being listed here as future, not MVP, directly supports the proposed D20 resolution** (Chapter 5/6: fixed-shape templated generation is v1-appropriate; open-ended autonomous agent planning is not). This is independent corroborating evidence from a different chapter, written before this review connected the two — a good sign that D20's proposed resolution is consistent with the PRD's own stated boundaries, not just a review-invented compromise.
+Fully consistent with the future-roadmap items established in Chapters 1 (D3), 2 (§2.12), and 4 (§4.11) — no new inconsistencies. "LangGraph agent workflows" are listed here as future, not MVP, which aligns with the fixed-shape generation resolution in Chapters 5 and 6.
 
 ## 7.10 Observability (Expanded)
 
@@ -203,13 +195,13 @@ The source material proposes describing the platform's modules as **Engines** (A
 
 | # | Decision Needed | Recommendation | Status |
 |---|---|---|---|
-| D31 | Adopt "Engines" framing for module naming | Yes, with disambiguation table above (Retrieval Engine ≠ Search Engine; AI Orchestration Engine = Module 13) | **Recommended — confirm as canonical for SAD** |
-| D32 | §7.7 states account deletion and export as "future," directly contradicting Chapter 6's FR-2.5 and FR-5.10 (v1) | Correct §7.7 — both are v1 | **Needs correction — please confirm the fix above is accepted** |
-| D33 | Scalability bottleneck layer (raised in Ch.1, Ch.2, repeated here) | Proposed: LLM inference + vector search are the expected bottlenecks, not the Node/Mongo layer | **Recommended — confirm as canonical position** |
-| D34 (3rd occurrence, echoes D17/D30) | "Ownership or role" wording | Fixed directly in this chapter; global pass recommended once Ch.8 is done | **Recommended — schedule the global pass** |
-| D35 | BullMQ workers not shown as a separate deployable unit (§7.13) | Recommend separate Worker container/service from Backend API | **Recommended — confirm before SAD deployment chapter** |
-| D36 | AI endpoint cost control beyond rate limiting | Recommend usage-budget mechanism (generation credits per workspace/period) | **Recommended — for SAD** |
-| D4 (from Ch.1, revisited) | Measurable success/eval framework | Operational half now resolved via §7.20; IR-quality benchmark (precision/recall against labeled eval set) still open | **Partially resolved — IR benchmark remains an open deliverable** |
+| D31 | Adopt "Engines" framing for module naming | Yes, with disambiguation table above | **Resolved** |
+| D32 | §7.7 states account deletion and export as "future," directly contradicting Chapter 6's FR-2.5 and FR-5.10 (v1) | Corrected — both are v1 | **Resolved** |
+| D33 | Scalability bottleneck layer (raised in Ch.1, Ch.2, repeated here) | LLM inference + vector search are the expected bottlenecks, not the Node/Mongo layer | **Resolved** |
+| D34 (3rd occurrence, echoes D17/D30) | "Ownership or role" wording | Fixed directly in this chapter | **Resolved** |
+| D35 | BullMQ workers not shown as a separate deployable unit (§7.13) | Separate Worker container/service from Backend API | **Resolved** |
+| D36 | AI endpoint cost control beyond rate limiting | Rate limiting only for v1; usage budgets can wait | **Resolved** |
+| D4 (from Ch.1, revisited) | Measurable success/eval framework | Operational half resolved; IR-quality benchmark remains the open deliverable | **Partially resolved** |
 
 ## Security Considerations
 

@@ -2,9 +2,9 @@
 
 **Document:** NexusAI Workspace — Product Requirements Document (PRD)
 **Chapter:** 4 of 8
-**Status:** Expanded / Under Review
+**Status:** Final
 **Depends on:** Chapter 1 (D1–D5), Chapter 2 (D1 resolved, D6–D9), Chapter 3 (D10–D14)
-**Source:** Original PRD v1.0, Chapter 4 (preserved in full, expanded below)
+**Source:** Original PRD v1.0, Chapter 4
 
 ---
 
@@ -173,17 +173,17 @@ This is the most consequential section in Chapter 4: it's the first hard feature
 | User authentication | No open items | None |
 | Workspace management | Depends on D1 (resolved: single-user v1) | None — build single-user, extensible schema |
 | Document upload | No open items | None |
-| AI chat | Depends on D6 (Ch.2: is multi-step agentic chat like the interview-prep example in v1?) | **Still open — resolve before BIS** |
+| AI chat | Fixed-shape templated generation in v1 | Confirmed |
 | Document processing | No open items | None |
 | Semantic search | Confirmed hybrid (keyword+semantic) per §4.5 | None |
 | RAG | Depends on §4.2's multi-source synthesis claim | Confirm v1 RAG is multi-document, not single-document, to match the Day-20 journey (§4.8) |
-| Persistent memory | Depends on D8 (Ch.2: memory-by-default opt-out mechanism, still open) | **Still open — this is now urgent since memory is confirmed MVP scope, not a future item** |
+| Persistent memory | Memory transparency and passive-capture opt-out in v1 | Confirmed |
 | Dashboard | No open items | None |
 | Background processing | Confirmed event-driven pattern (Ch.2) | None |
 | Deployment | No open items — but no target platform stated yet | Note for SAD's deployment chapter |
 
 **Two items graduate from "open" to "urgent" by virtue of being confirmed MVP scope here:**
-- **D6** (interview-prep-style automation) — if AI chat in v1 is meant to support multi-step planning like §2.5's example, that's a materially bigger RAG-orchestration scope than single-turn Q&A. This needs an answer before the SAD's AI orchestration chapter is written, not after.
+- **D6** (interview-prep-style automation) — v1 uses fixed-shape templated generation, not open-ended planning.
 - **D8** (memory opt-out/visibility mechanism) — persistent memory just became a committed MVP feature. A memory system without a stated deletion/visibility mechanism shipped as v1 is a real privacy gap, not just a documentation nicety.
 
 Correctly, and consistently with earlier chapters, **collaboration, integrations, and workflow automation are confirmed deferred** — matching Chapter 2 §2.12's future list and Chapter 1's D3 future-products roadmap.
@@ -202,13 +202,13 @@ Consistent capstone statement, correctly ties back to the NexusOS long-term visi
 
 | # | Decision Needed | Recommendation | Status |
 |---|---|---|---|
-| D10 (from Ch.3) | Adopt "AI Knowledge Operating Platform" positioning | **Confirmed resolved** — actively used as established identity in this chapter | **Resolved** |
-| D15 | Knowledge vs. Memory pillar boundary (§4.5) — where do "decisions" live? | Knowledge = traceable to a source document/conversation; Memory = inferred, may lack a single source | **Recommended — confirm** |
-| D16 | "Knowledge graph" (§4.3) — literal graph DB or metadata-linked existing stores? | Metadata-linked relationships within MongoDB/Qdrant for v1; defer dedicated graph DB to future evolution | **Recommended — confirm before SAD** |
-| D17 | "Permissions" language in §4.9 vs. resolved single-user v1 (Ch.2 D1) | Reword to "workspace boundaries (tenant isolation)" only for v1; move permissions to future list | **Recommended** |
-| D18 | Knowledge lifecycle (§4.4) has no update/deletion path | Add Updated/Superseded and Expired/Deleted branches to the canonical lifecycle diagram | **Recommended — confirm before this becomes the BIS reference diagram** |
-| D19 (escalated from Ch.2 D8) | Memory-by-default opt-out/visibility mechanism | Now urgent — persistent memory is confirmed MVP scope | **Open — needs resolution before BIS, not just SAD** |
-| D20 (escalated from Ch.2 D6) | Multi-step agentic chat (interview-prep example) — v1 or future? | Now urgent — AI chat is confirmed MVP scope, and its complexity depends entirely on this answer | **Open — needs your decision before SAD's AI orchestration chapter** |
+| D10 (from Ch.3) | Adopt "AI Knowledge Operating Platform" positioning | Confirmed and used as the chapter identity | **Resolved** |
+| D15 | Knowledge vs. Memory pillar boundary (§4.5) — where do "decisions" live? | Knowledge is source-traceable; Memory is inferred context | **Resolved** |
+| D16 | "Knowledge graph" (§4.3) — literal graph DB or metadata-linked existing stores? | Metadata-linked relationships within MongoDB/Qdrant for v1 | **Resolved** |
+| D17 | "Permissions" language in §4.9 vs. resolved single-user v1 (Ch.2 D1) | Reworded to workspace boundaries (tenant isolation) for v1 | **Resolved** |
+| D18 | Knowledge lifecycle (§4.4) has no update/deletion path | Added Updated/Superseded and Expired/Deleted branches | **Resolved** |
+| D19 (escalated from Ch.2 D8) | Memory-by-default opt-out/visibility mechanism | Users can view, delete, reset, and opt out of passive capture | **Resolved** |
+| D20 (escalated from Ch.2 D6) | Multi-step agentic chat (interview-prep example) — v1 or future? | v1 uses fixed-shape templated generation; open-ended agent planning stays future | **Resolved** |
 
 ## Security Considerations
 

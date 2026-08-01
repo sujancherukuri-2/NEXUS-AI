@@ -2,9 +2,9 @@
 
 **Document:** NexusAI Workspace — Product Requirements Document (PRD)
 **Chapter:** 1 of N
-**Status:** Expanded / Under Review
+**Status:** Final
 **Owner:** Product & Engineering
-**Source:** Original PRD v1.0, Chapter 1 (preserved in full, expanded below)
+**Source:** Original PRD v1.0, Chapter 1
 
 ---
 
@@ -256,11 +256,11 @@ This still leaves one open item for the SAD to resolve: **the inter-service cont
 
 | # | Decision Needed | Options | Recommendation | Status |
 |---|---|---|---|---|
-| D1 | Workspace-to-user cardinality | Personal-only vs. multi-user workspaces with roles | Design for multi-user from the start (cheaper now than later) | **Open — needs your decision (will assume multi-user-ready by default in SAD unless told otherwise)** |
+| D1 | Workspace-to-user cardinality | Single-user v1 workspaces with an extensible data model | Design for multi-user from the start | **Resolved** |
 | D2 | Service runtime split | Node+Python polyglot vs. single-runtime | MERN (app layer) + Python/LangGraph/Qdrant/HuggingFace (AI layer) | **Resolved — confirmed by user** |
 | D3 | Roadmap diagram | Original (sequential) vs. corrected (hierarchical) | NexusOS (vision) → NexusAI Workspace (first product) → AI Workflow Studio / Developer Copilot / Research Copilot / Enterprise Knowledge Platform (future, parallel) | **Resolved — confirmed by user** |
 | D4 | Success metrics | Qualitative vs. measurable | Adopt measurable reframing + build an eval corpus | Proposed — carried forward, not yet confirmed |
-| D5 | Node↔Python inter-service contract | REST vs. gRPC vs. message queue | Not yet decided | **Open — for SAD** |
+| D5 | Node↔Python inter-service contract | Query-time calls use synchronous REST; ingestion remains queue-based | Resolved | **Resolved** |
 
 ## Security Considerations (Chapter-Level)
 

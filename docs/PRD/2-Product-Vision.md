@@ -2,9 +2,9 @@
 
 **Document:** NexusAI Workspace — Product Requirements Document (PRD)
 **Chapter:** 2 of 8
-**Status:** Expanded / Under Review
+**Status:** Final
 **Depends on:** Chapter 1 (Executive Summary) — D1–D5 decision log
-**Source:** Original PRD v1.0, Chapter 2 (preserved in full, expanded below)
+**Source:** Original PRD v1.0, Chapter 2
 
 ---
 
@@ -160,7 +160,7 @@ sequenceDiagram
     API-->>User: Notify (WebSocket/push)
 ```
 
-This is the clearest, most implementation-ready diagram in the PRD so far — recommend the BIS lift this sequence directly as the ingestion pipeline's reference contract, including the "202 Accepted then async notify" pattern, which is the correct choice for anything crossing the Node↔Python boundary (Chapter 1's D5, still open — this diagram implicitly answers *part* of D5 by showing a queue-based contract rather than synchronous REST for ingestion specifically; synchronous REST may still be right for lightweight query-time calls).
+This is the clearest, most implementation-ready diagram in the PRD so far — recommend the BIS lift this sequence directly as the ingestion pipeline's reference contract, including the "202 Accepted then async notify" pattern. Chapter 1's D5 is now resolved: ingestion remains queue-based, while lightweight query-time calls use synchronous REST.
 
 **API First** — good practice; worth adding one concrete implication: if frontend consumes APIs "exactly as external clients would" (as stated), this implies an API versioning strategy should exist from day one, since v1's own frontend becomes, in effect, the first external consumer to break on a breaking change.
 
@@ -244,10 +244,10 @@ No item here maps to **Research Copilot** — worth flagging as a minor gap: eit
 
 | # | Decision Needed | Resolution | Status |
 |---|---|---|---|
-| D1 (from Ch.1) | Workspace-to-user cardinality | **Resolved by §2.9/§2.12**: v1 is single-user workspaces; multi-user is explicitly future. Data model should remain extensible. | **Resolved** |
-| D6 | Interview-prep-style multi-step automation (§2.5, Principle 3 example) — is this v1 or does it require agent orchestration, which §2.12 lists as future? | Needs explicit call — recommend labeling this example as illustrative/future in the PRD text, or descoping v1's "intent-driven" claim to single-step retrieval+generation only | **Open — needs your decision** |
-| D7 | Embedding provider independence / re-embedding strategy (§2.7) | Recommend treating as first-class in SAD | Proposed |
-| D8 | Memory-by-default opt-out mechanism (§2.5 Principle 4 vs. Privacy value) | Needs a concrete UX + data mechanism, not just a stated value | **Open — for SAD/BIS** |
+| D1 (from Ch.1) | Workspace-to-user cardinality | v1 is single-user workspaces; multi-user is future. Data model remains extensible. | **Resolved** |
+| D6 | Interview-prep-style multi-step automation (§2.5, Principle 3 example) | v1 uses fixed-shape templated generation; open-ended agent orchestration remains future | **Resolved** |
+| D7 | Embedding provider independence / re-embedding strategy (§2.7) | Treat as first-class in SAD | **Resolved** |
+| D8 | Memory-by-default opt-out mechanism (§2.5 Principle 4 vs. Privacy value) | Users can view/delete/reset memory and opt out of passive capture | **Resolved** |
 | D9 | Research Copilot has no corresponding future-item mapping in Ch.2 §2.12 | Recommend adding a research-specific future capability for roadmap consistency | Proposed |
 
 ## Security Considerations
