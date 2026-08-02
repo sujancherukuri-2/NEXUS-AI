@@ -71,7 +71,7 @@ graph TD
 
 This is the single best illustrative example in the whole PRD so far — one real topic, seven disconnected artifacts. Worth using this exact scenario as the canonical example throughout the SAD and BIS (e.g., as the worked example for the RAG retrieval chapter, and as a literal test case in the eventual eval framework from Chapter 1's D4). Recommend formally adopting "the Redis Optimization scenario" as a named reference example carried through all remaining chapters, rather than inventing a new example each time — this also gives you a consistent demo scenario for a portfolio walkthrough.
 
-**Important scoping note, not present in the original text:** several of these sources (GitHub, Slack, Draw.io, Notion) are *external tools*, not files the user manually uploads. If NexusAI Workspace only ingests manually uploaded documents in v1 (which appears to be the case, given integrations are listed as post-v1 in Chapter 2 §2.12), then this exact scenario **cannot be fully solved in v1** — only the artifacts the user manually uploads (the PDF, maybe an exported Slack thread) would be indexed. Recommend the chapter be explicit that this example illustrates the *long-term* vision, and separately state a v1-scoped version of the same example (e.g., limited to uploaded PDFs, notes, and in-app conversations) so the reader doesn't infer integration capability that Chapter 2 already deferred.
+**Important scoping note:** several of these sources (GitHub, Slack, Draw.io, Notion) are *external tools*, not files the user manually uploads. In v1, this scenario is handled using uploaded artifacts only (for example: exported notes, uploaded PDFs, and in-app conversations). Direct live integrations with external tools remain post-v1.
 
 ## 3.5 Context Switching (Expanded)
 
@@ -85,7 +85,7 @@ graph LR
     GH --> VS2[Back to VS Code]
 ```
 
-The claim that "studies consistently show" context switching disrupts focus is directionally correct and well-established in productivity/cognitive-psychology literature generally, but as written it's an uncited assertion. For a document meant to demonstrate rigor (per the master prompt's stated goal of interview-caliber documentation), recommend either citing a specific, credible source, or softening the phrasing to something like "it is widely understood that..." to avoid an unsupported empirical claim sitting next to the product's actual engineering content.
+It is widely understood that context switching disrupts focus and increases task-completion overhead. In this PRD, the point is used as design context rather than a formal research claim.
 
 ## 3.6 AI Has Improved, But Context Hasn't (Expanded)
 
@@ -228,13 +228,11 @@ This section restates Chapter 1 §1.12 almost verbatim, with the same unfalsifia
 
 **Overall assessment:** Chapter 3 makes the strongest evidentiary case in the PRD so far, particularly §3.4 (fragmentation example) and §3.6 (the "AI improved, context hasn't" framing) — both are specific and technically precise rather than generic AI-hype language. The chapter's main weaknesses are self-inflicted credibility risks (the all-checkmarks table, the uncited research claim), which are cheap to fix and meaningfully improve how the document reads to a technically skeptical audience.
 
-**Do not simply approve:**
+**Final validation notes:**
 1. The competitive differentiator table (§3.13) as originally written would hurt credibility with exactly the audience (technical interviewers, senior engineers) this project is meant to impress. Replaced above — recommend the replacement be treated as final, not optional polish.
 2. The positioning refinement ("AI Knowledge Operating Platform") is good advice but was presented as a late add-on in the source material rather than integrated — it's now reconciled against Chapters 1–2 and shown to be additive, not contradictory, which is the right outcome, but it needed to be checked rather than assumed compatible.
 3. §3.4's flagship example (Redis Optimization) currently implies integration capabilities the PRD has already scoped as post-v1 (Chapter 2, §2.12) — this is the same class of inconsistency as Chapter 2's D6 (promising v1 capability the roadmap defers). Recommend resolving D13 with the same care D6 is getting.
 
 ## Summary
 
-Chapter 3 justifies the product's existence: fragmentation is structural (not one bad tool, but no tool understanding the others), existing solutions each own one node of the problem rather than the connective layer, and the technology to build the connective layer is now practical. The proposed "AI Knowledge Operating Platform" positioning is adopted as a refinement (D10) — shown to be consistent with, not additive scope beyond, Chapters 1–2 — but it raises the bar on what the SAD's data model must actually deliver. Two credibility-risk items (the differentiator table, an uncited claim) are addressed directly rather than passed through.
-
-**Next step:** confirm D10 (positioning) and D13 (v1-scoped fragmentation example) — both affect how later chapters and the SAD should be framed. Send Chapter 4 whenever ready.
+Chapter 3 justifies the product's existence: fragmentation is structural, existing tools each solve isolated parts, and the connective layer is now technically feasible. Positioning, competitive framing, and v1 scoping language are aligned for SAD handoff.

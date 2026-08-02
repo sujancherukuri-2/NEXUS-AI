@@ -95,11 +95,7 @@ graph TD
     RAG --> MEM
 ```
 
-**Unresolved question worth settling before the SAD:** the PRD says "users create workspaces" but doesn't yet state the **workspace-to-user cardinality**. Is it:
-- (a) one user → many personal workspaces, no sharing (simplest, fastest to ship), or
-- (b) one workspace → many users with roles/permissions (needed for "teams," which the PRD's long-term vision implies)?
-
-This single decision changes the auth model, data model, and RAG scoping logic significantly (memory and retrieval must never leak across workspace boundaries). Recommend resolving this explicitly in the PRD before the SAD's data model chapter is written, rather than letting the BIS default to whichever is easiest to code.
+**Resolved workspace cardinality for v1:** one user can create and manage multiple personal workspaces, with no multi-user sharing in v1. Team workspaces remain post-v1, but the data model should stay extensible so collaboration can be added without redesigning workspace isolation.
 
 ## 1.5 Product Category (Expanded)
 
@@ -302,13 +298,11 @@ This still leaves one open item for the SAD to resolve: **the inter-service cont
 
 **Overall assessment:** Chapter 1 is a strong, coherent product vision with real technical substance (it correctly identifies retrieval + memory as the hard problem, not the LLM call). It is not yet fully self-consistent, and it defers two decisions (tenancy, runtime split) that materially shape everything downstream. Recommend resolving D1 and D2 before starting the SAD, since both are expensive to change after code exists.
 
-**Do not simply approve:** per the working instructions, here is what I would push back on if this were an internal design review:
+**Final validation notes:**
 1. The roadmap diagram (D3) actively contradicts its own supporting text — small thing, but this is the kind of internal inconsistency that undermines credibility in a document meant to demonstrate engineering rigor.
 2. "Success" (1.12) as written is unfalsifiable. A PRD that can't be used to determine ship/no-ship is incomplete, even at v1.
 3. The MERN vs. Python-AI-stack tension (1.13) is the most consequential open item — it should be resolved with a named decision record, not left for the SAD to quietly default.
 
 ## Summary
 
-Chapter 1 answers: what NexusAI Workspace is, why it exists, what makes it different, and what "done" should mean. This expansion preserves every original claim, adds the reasoning and diagrams needed to make those claims actionable, and surfaces four decisions (D1–D4) that should be resolved — ideally by you, since they're product calls, not engineering ones — before Chapter 2 (Software Architecture Document) begins.
-
-**Next step:** confirm or adjust D1–D4 above, then provide the SAD (or tell me to proceed to expanding it) so Chapter 2 can be built on settled foundations rather than assumptions.
+Chapter 1 answers what NexusAI Workspace is, why it exists, what makes it different, and what success means. The core foundational decisions are now locked for SAD handoff.

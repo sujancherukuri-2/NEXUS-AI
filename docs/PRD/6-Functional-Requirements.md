@@ -267,9 +267,9 @@ This module is confirmed as part of v1.
 
 ## 6.15 AI Functional Requirements (Expanded)
 
-The cross-cutting AI requirements list is accurate but should now explicitly reference Module 14 if confirmed:
+The cross-cutting AI requirements list explicitly references Module 14:
 
-> The AI subsystem shall answer questions, generate summaries, explain concepts, compare documents, produce study material (**via Module 14 if confirmed**), review technical documentation, provide grounded citations, and respect workspace isolation (per FR-9.3).
+> The AI subsystem shall answer questions, generate summaries, explain concepts, compare documents, produce study material (via Module 14), review technical documentation, provide grounded citations, and respect workspace isolation (per FR-9.3).
 
 No other changes needed; provider-agnosticism is correctly restated and consistent with Module 13.
 
@@ -330,7 +330,7 @@ Updated to reflect this chapter's additions:
 
 ## Scalability Considerations
 
-- FR-6.3 (multi-document synthesis) and FR-14.x (structured generation, if confirmed) are the two most expensive query patterns introduced in this chapter — both should be benchmarked separately from single-document RAG against the latency target recommended in Chapter 1, since they involve materially more retrieval and generation work per request.
+- FR-6.3 (multi-document synthesis) and FR-14.x (structured generation) are the two most expensive query patterns introduced in this chapter — both should be benchmarked separately from single-document RAG against the latency target recommended in Chapter 1, since they involve materially more retrieval and generation work per request.
 
 ## Performance Considerations
 
@@ -344,7 +344,7 @@ Updated to reflect this chapter's additions:
 
 ## Implementation Notes for Later Chapters
 
-- The SAD should treat Module 13 (AI Gateway) and Module 14 (Structured Generation, if confirmed) as first-class architectural components, not implementation details buried inside the Knowledge Engine.
+- The SAD should treat Module 13 (AI Gateway) and Module 14 (Structured Generation) as first-class architectural components, not implementation details buried inside the Knowledge Engine.
 - The BIS should implement FR-9.4–FR-9.8 as part of the initial memory module build, not as a follow-up release.
 - D5 (Node↔Python contract) should be the very first decision recorded in the SAD, since Module 13, Module 6, and Module 7 all depend on knowing whether that boundary is synchronous (REST/gRPC) or async (queue) for query-time calls specifically.
 
@@ -360,13 +360,11 @@ Updated to reflect this chapter's additions:
 
 **Overall assessment:** Chapter 6 is where the cumulative weight of five chapters' open items either gets resolved or becomes impossible to ignore. The most important outcome of this expansion is that **D19 finally has real functional requirements** (FR-9.4–9.8) rather than another flag — that's the single most valuable thing this chapter needed to produce, and it's now done, pending your confirmation.
 
-**Do not simply approve:**
+**Final validation notes:**
 1. The original chapter's traceability claim (§6.1) was not actually true for 10 of 12 modules — fixed throughout, but worth noting this is exactly the kind of internal inconsistency a rigorous external review (the kind this chapter's own opening claims to invite — "Microsoft, Google, Atlassian, OpenAI reviewing it") would catch immediately.
 2. Module 14 (Structured Generation) is proposed, not confirmed — if it's rejected, three personas from Chapter 5 lose their signature use case in v1, and that should be a conscious, stated trade-off, not a silent scope gap discovered later.
 3. D5 (Node↔Python contract) is resolved here and can be carried into the SAD.
 
 ## Summary
 
-Chapter 6 translates five chapters of philosophy, positioning, and personas into numbered, traceable functional requirements — and in doing so, either resolves or concretely proposes resolutions for nearly every open item carried forward: D18 and D19 get real functional requirements, D20/D22 get a proposed module with FR IDs, D26/D27 fix structural inconsistencies in the chapter itself, and D28/D30 close smaller specification gaps. The one item still genuinely open is D5, the Node↔Python contract — worth resolving before the SAD, since Modules 6, 7, and 13 all depend on knowing that answer.
-
-**Next step:** confirm Module 14 (Structured Generation) and the memory transparency FRs (9.4–9.8) — both are consequential enough to warrant an explicit yes before Chapter 7. Send Chapter 7 whenever ready.
+Chapter 6 translates prior chapters into numbered, traceable functional requirements. Memory transparency, structured generation, export behavior, and the Node↔Python contract are all resolved in the functional spec and ready for SAD mapping.

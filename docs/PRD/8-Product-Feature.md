@@ -93,7 +93,7 @@ Clean, well-scoped, and matches the disambiguation proposed in Chapter 7 (Retrie
 
 ## 8.10 Search Engine (Expanded)
 
-*"Unified interface over documents, conversations, and memories"* — consistent with Chapter 6's Module 8 and the hybrid-search requirement (FR-8.1–8.3). No gaps. One note: if memory search is unified with document/conversation search (as stated), memory-visibility (FR-9.4, if confirmed) could potentially be satisfied *through* the Search Engine's existing interface rather than requiring a wholly separate UI — worth passing to the SAD as an implementation option, not a requirement change.
+*"Unified interface over documents, conversations, and memories"* — consistent with Chapter 6's Module 8 and the hybrid-search requirement (FR-8.1–8.3). If memory search is unified with document/conversation search, memory-visibility (FR-9.4) can be satisfied through the Search Engine interface rather than a separate UI.
 
 ## 8.11 Background Processing Engine (Expanded)
 
@@ -223,14 +223,14 @@ This matches the plan you already set at the start of this process (PRD's 8 chap
 
 **Overall assessment:** Chapter 8 is a strong closing PRD chapter — the Engines architecture is coherent, largely well-bounded, and independently validates Chapter 7's naming proposal. Its main issues are a self-contained inconsistency (§8.5 vs. §8.14) and, more importantly, the quiet absence of two items (memory transparency, structured generation) that this review has been escalating since Chapter 2. Those need real answers now, not further flags — this is the last PRD chapter, and both items materially shape the SAD's engine/module boundaries.
 
-**Do not simply approve:**
+**Final validation notes:**
 1. Memory Engine (§8.9), the final authoritative description of that subsystem, says nothing about the transparency/deletion mechanism this review has called the "highest-priority open item" for three consecutive chapters. This needs a decision now.
 2. The document-processing pipeline is described two different ways within the same chapter (§8.5 vs. §8.14) — a small thing, but exactly the kind of internal inconsistency a rigorous reviewer catches on a first read.
 3. Structured generation's consistent, three-chapter absence should be treated as a real signal, not dismissed — but it still needs to be a *stated* decision (yes or no) rather than an implicit one, given three personas' use cases depend on the answer.
 
 ## Summary
 
-Chapter 8 closes the PRD with a coherent Engines-based architecture that validates and refines Chapter 7's proposal, correctly reinforces the workspace-deletion cascade (D18) for a fourth time, and introduces good new business rules (single-workspace document ownership, centralized boundary enforcement). It also surfaces the two most consequential open items in the entire document at their final decision point: memory transparency (D39) and structured generation (D41). Both need explicit answers before the SAD begins.
+Chapter 8 closes the PRD with a coherent Engines-based architecture that validates and refines Chapter 7's proposal, correctly reinforces the workspace-deletion cascade (D18), and introduces strong business rules (single-workspace document ownership, centralized boundary enforcement). Memory transparency (D39), structured generation (D41), and deployment default (D42) are explicitly resolved for SAD handoff.
 
 ---
 
@@ -239,9 +239,9 @@ Chapter 8 closes the PRD with a coherent Engines-based architecture that validat
 A clean handoff summary across all 8 chapters, for reference going into the SAD.
 
 **Resolved / Confirmed:**
-D1 (single-user v1 workspaces), D2 (MERN + Python polyglot, LangGraph/Qdrant/HF), D3 (roadmap: NexusOS → Workspace → 4 future products), D7 (embedding provider independence, FR-13.3), D10 ("AI Knowledge Operating Platform" positioning), D11 (honest competitive quadrant vs. all-checkmarks table), D15 (Knowledge vs. Memory boundary rule), D16 (lightweight relationship metadata, not a dedicated graph DB, for v1), D17/D30/D34 (ownership-not-role wording, fixed reactively 3×), D18 (cascading deletion, FR-3.7/FR-2.6), D21 (Technical Professionals folded into existing personas), D26 (module/diagram reconciliation, AI Gateway formalized), D27 (consistent FR-x.y numbering applied), D28 (document versioning behavior defined), D31 (Engines framing adopted and confirmed), D32 (Ch.7 privacy-section contradiction corrected), D37 (Document vs. Knowledge Engine boundary), D40 (Dashboard Engine accepted as canonical).
+D1 (single-user v1 workspaces), D2 (MERN + Python polyglot, LangGraph/Qdrant/HF), D3 (roadmap: NexusOS → Workspace → 4 future products), D5 (Node↔Python contract: sync REST for query-time, queue for ingestion), D7 (embedding provider independence, FR-13.3), D10 ("AI Knowledge Operating Platform" positioning), D11 (honest competitive quadrant vs. all-checkmarks table), D15 (Knowledge vs. Memory boundary rule), D16 (lightweight relationship metadata, not a dedicated graph DB, for v1), D17/D30/D34 (ownership-not-role wording, fixed reactively 3×), D18 (cascading deletion, FR-3.7/FR-2.6), D19 (memory transparency controls in v1), D21 (Technical Professionals folded into existing personas), D22 (lightweight export in v1), D26 (module/diagram reconciliation, AI Gateway formalized), D27 (consistent FR-x.y numbering applied), D28 (document versioning behavior defined), D31 (Engines framing adopted and confirmed), D32 (Ch.7 privacy-section contradiction corrected), D37 (Document vs. Knowledge Engine boundary), D39 (memory transparency included in final spec), D40 (Dashboard Engine accepted as canonical), D41 (structured generation included in v1), D42 (hosted API default LLM provider).
 
-**Recommended follow-ups:** D12 (de-duplicate success criteria across Ch.1/Ch.3), D33 (scalability bottleneck = LLM inference + vector search, not CRUD layer), D35 (separate Worker deployment unit), D36 (AI usage budgets beyond rate limiting), D38 (dedicated Chat Engine section), D43 (Postgres as noted future consideration only).
+**Recommended follow-ups:** D12 (de-duplicate success criteria across Ch.1/Ch.3), D33 (scalability bottleneck = LLM inference + vector search, not CRUD layer), D35 (separate Worker deployment unit), D36 (AI usage budgets beyond rate limiting), D38 (chat responsibilities folded into AI Orchestration Engine and keep this mapping explicit in SAD), D43 (Postgres as noted future consideration only).
 
 **Minor follow-ups:** D9 (Research Copilot roadmap mapping gap), D13 (v1-scoped fragmentation example), D14 (uncited context-switching research claim).
 

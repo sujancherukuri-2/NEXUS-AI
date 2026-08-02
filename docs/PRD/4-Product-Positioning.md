@@ -246,13 +246,11 @@ Consistent capstone statement, correctly ties back to the NexusOS long-term visi
 
 **Overall assessment:** Chapter 4 is the strongest chapter so far in terms of implementation-readiness — the six pillars and MVP scope list are genuinely useful engineering artifacts, not just narrative. Its main value in this review is that a concrete MVP list makes several previously-abstract open items (D6, D8) impossible to leave vague any longer — that's the chapter doing its job correctly, not a flaw.
 
-**Do not simply approve:**
+**Final validation notes:**
 1. The knowledge lifecycle (§4.4) is the canonical diagram this project will build against, and as originally written it has no update or deletion path — this needed to be caught here, not discovered during BIS implementation.
 2. Persistent memory and multi-step AI chat are both now confirmed MVP features, which means D8/D19 (memory privacy mechanism) and D6/D20 (agentic chat scope) are no longer deferrable philosophical questions — they're blocking items for the next chapter that touches AI orchestration.
 3. The "knowledge graph" language (§4.3) needed an explicit scoping decision (D16) before it reaches the SAD, since the term alone is compatible with wildly different infrastructure choices.
 
 ## Summary
 
-Chapter 4 converts Chapter 3's positioning into a concrete conceptual model: six pillars, a lifecycle, and — for the first time — a hard MVP scope list. That concreteness is valuable and surfaces two previously-soft open items (memory privacy, agentic chat scope) as now-urgent, plus three new implementation-facing decisions (Knowledge/Memory boundary, knowledge-graph scoping, permissions wording). Nothing here contradicts Chapters 1–3; if anything, this chapter is where their open threads start converging into concrete engineering requirements.
-
-**Next step:** D19 and D20 are the two items most worth resolving before we go further, since they directly shape the SAD's AI orchestration and memory chapters. Send Chapter 5 whenever ready.
+Chapter 4 converts Chapter 3's positioning into a concrete conceptual model: six pillars, a lifecycle, and a hard MVP scope list. The architecture-shaping items that were previously open are now resolved and consistent with downstream chapters.

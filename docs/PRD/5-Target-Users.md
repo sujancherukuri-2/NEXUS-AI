@@ -225,7 +225,7 @@ The added feedback loop (Create New Knowledge feeding back into Acquire Informat
 
 **Overall assessment:** Chapter 5 is where the PRD's cumulative open items (D6/D20 especially) finally get concrete enough to actually resolve, rather than remain philosophical. That's the chapter doing exactly what it should — personas and journeys are the right lens for turning "is multi-step generation in scope?" from an abstract debate into "these three personas need it, here's the minimal version that fits."
 
-**Do not simply approve:**
+**Final validation notes:**
 1. A structural gap (six named groups, five personas) is a small thing individually but is exactly the kind of inconsistency that erodes confidence in a document being reviewed at the rigor level this chapter's own opening claims to target (Microsoft/Notion/Atlassian-level review). Resolved above (D21) rather than left as-is.
 2. "Export Notes" is new scope introduced through a journey diagram, not through an explicit requirements discussion — that's a scope-creep pattern worth naming explicitly (D22) so it doesn't happen unnoticed elsewhere.
 3. D19 (memory transparency) has now touched five consecutive chapters without a resolution. At this point it's the single highest-priority open item in the entire document set and should probably be resolved before Chapter 6 (Functional Requirements) formalizes memory-related requirements around a mechanism that doesn't exist yet.

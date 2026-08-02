@@ -288,13 +288,11 @@ No item here maps to **Research Copilot** — worth flagging as a minor gap: eit
 
 **Overall assessment:** Chapter 2 is philosophically strong and — importantly — mostly consistent with Chapter 1, with one genuine resolution (D1) and a few new, legitimate open items (D6–D9) rather than contradictions. This is a healthy sign: the two chapters were clearly written from the same underlying mental model.
 
-**Do not simply approve:**
+**Final validation notes:**
 1. Principle 3's interview-prep example implicitly promises v1 capability that §2.12 explicitly defers to post-v1 (agent orchestration). This is the most important inconsistency in the chapter and should be resolved before it reaches the SAD, since it directly affects RAG-orchestration scope.
 2. "Knowledge evolves" (§2.4) is stated as a core belief without any mechanism to back it — this is a real, non-trivial data-modeling requirement (temporal/contradiction handling) that wasn't visible from Chapter 1 alone.
 3. Memory-by-default (Principle 4) needs teeth — right now it's a value statement in tension with Privacy, not a designed feature.
 
 ## Summary
 
-Chapter 2 defines the philosophical operating rules for the product: AI-native by architecture, knowledge over files, intent over navigation, memory by default, and explainability/transparency/human-control as trust guardrails. It resolves Chapter 1's D1 (workspaces are single-user in v1) and surfaces four new open items (D6–D9), the most consequential being whether Principle 3's multi-step automation example belongs in v1 or should be explicitly deferred alongside agent orchestration.
-
-**Next step:** confirm D6 (interview-prep example: v1 or future?) since it's the one item here that changes RAG scope directly. Send Chapter 3 whenever ready.
+Chapter 2 defines the philosophical operating rules for the product: AI-native by architecture, knowledge over files, intent over navigation, memory by default, and explainability/transparency/human-control as trust guardrails. The previously open decisions from this chapter are resolved and ready for SAD.

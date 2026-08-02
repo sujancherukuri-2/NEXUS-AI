@@ -10,7 +10,7 @@
 
 ## Purpose
 
-Chapter 6 defined *what* the system does. Chapter 7 defines *how well*, and — just as importantly for a document this size — it's the first chapter with enough quantified detail to actually **check earlier chapters' claims against numbers**. Several things flagged as vague across Chapters 1–6 (the unqualified "100 → 1M users" scalability claim, the undefined RAG latency budget) either get resolved here or are exposed as still unresolved despite this being exactly the right chapter to resolve them.
+Chapter 6 defined *what* the system does. Chapter 7 defines *how well*, and — just as importantly for a document this size — it's the first chapter with enough quantified detail to actually **check earlier chapters' claims against numbers**. Several things flagged as vague across Chapters 1–6 (the unqualified "100 → 1M users" scalability claim, the undefined RAG latency budget) are resolved here with concrete NFR targets.
 
 ## Scope
 
@@ -43,7 +43,7 @@ Applying NFR-2's "first token in 2–4s" target uniformly to a literature-review
 |---|---|---|---|
 | Single-document Q&A (baseline, NFR-2 as written) | < 1s | 2–4s | Streaming until done, no hard cap |
 | Multi-document synthesis (FR-6.3) | < 1.5s | 3–6s | < 15s p95 |
-| Structured generation (Module 14, if confirmed) | < 2s | 4–8s (may show progressive sections rather than token-by-token) | < 30s p95, with progress indication |
+| Structured generation (Module 14) | < 2s | 4–8s (may show progressive sections rather than token-by-token) | < 30s p95, with progress indication |
 
 This tiering should be treated as a starting proposal for the SAD to refine with real benchmarking, not a final number — but a tiered structure is materially more honest than one blanket target across operations that Chapter 6 itself already flagged as having very different cost profiles.
 
@@ -185,7 +185,7 @@ The source material proposes describing the platform's modules as **Engines** (A
 
 **Notably, Dashboard (Module 10) and Notifications (Module 11) are correctly *not* included in the Engines list** — they're presentation/delivery layers built on top of the engines, not processing engines themselves. That's a sound omission, not a gap, and worth stating explicitly so it doesn't look like an oversight.
 
-**Structured Generation (proposed Module 14)**, if confirmed, would reasonably become an eleventh **Generation Engine**, sitting alongside Retrieval and Memory Engines as an input to Knowledge Engine's final orchestration.
+**Structured Generation (Module 14)** maps cleanly to an eleventh **Generation Engine**, sitting alongside Retrieval and Memory Engines as an input to Knowledge Engine orchestration.
 
 **Recommendation: adopt the Engines framing**, using the disambiguation above. It's not new scope — every engine maps to an already-specified module — and it's consistent with, and arguably strengthens, the "AI Knowledge Operating Platform" positioning adopted in Chapter 3 (D10): an *Operating Platform* is naturally composed of *Engines*, not a flat feature list. This is good narrative and architectural consistency, not just renaming for its own sake.
 
@@ -214,7 +214,7 @@ The source material proposes describing the platform's modules as **Engines** (A
 
 ## Performance Considerations
 
-- The tiered latency targets proposed for §7.2 should be treated as the SAD's starting benchmarking targets, to be refined with real measurements once Module 6 (Retrieval Engine) and Module 14 (Generation Engine, if confirmed) exist to benchmark against.
+- The tiered latency targets proposed for §7.2 should be treated as the SAD's starting benchmarking targets, to be refined with real measurements once Module 6 (Retrieval Engine) and Module 14 (Generation Engine) exist to benchmark against.
 
 ## Best Practices Applied in This Expansion
 
@@ -240,13 +240,11 @@ The source material proposes describing the platform's modules as **Engines** (A
 
 **Overall assessment:** Chapter 7 is where the PRD's quality bar becomes quantified and testable rather than aspirational — exactly the shift the chapter's own introduction promises ("what a CRUD app can't answer"). Most sections hold up well and several (§7.17's data-integrity note, §7.9's extensibility list) independently corroborate decisions made earlier in this review process, which is a good consistency signal.
 
-**Do not simply approve:**
+**Final validation notes:**
 1. §7.7's claim that account deletion and export are "future" directly contradicts Chapter 6's functional requirements for the same release. This is the most serious inconsistency found in any chapter so far — not a soft tension or missing detail, but two chapters making opposite claims about the same feature's scope. This needs to be fixed before Chapter 8, or Chapter 8's feature specifications will inherit the ambiguity.
 2. The scalability bottleneck question went unanswered through three chapters (1, 2, and the original version of this one) despite this being exactly the chapter meant to quantify such things. Resolved here with a concrete, named position (D33) rather than a fourth deferral.
 3. The "ownership or role" terminology issue has now recurred three times across three independently-written chapters — worth treating as a process lesson (schedule the global pass) rather than continuing to catch it reactively.
 
 ## Summary
 
-Chapter 7 quantifies the product's quality bar and, in doing so, both resolves long-open items (RAG latency target, partially D4, the scalability bottleneck question) and surfaces one serious new contradiction (D32, account deletion/export scope) that needs correcting before Chapter 8. The trailing "Engines" reframing proposal is adopted (D31) as a genuine improvement that's consistent with, and clarifies, structure already established in Chapter 6 — including resolving that chapter's own unresolved "RAG Engine" naming gap.
-
-**Next step:** D32 (the account-deletion/export contradiction) should be confirmed-fixed before Chapter 8, since Chapter 8's feature specifications will need a single, unambiguous source of truth for what's in v1. Send Chapter 8 whenever ready.
+Chapter 7 quantifies the product quality bar with consistent NFRs for performance, scalability, reliability, privacy, and deployment. The chapter aligns with Chapter 6 functional scope and is ready for SAD-level architecture translation.
