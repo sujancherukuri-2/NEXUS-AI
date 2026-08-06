@@ -28,7 +28,7 @@ Covers: AI philosophy, high-level AI architecture, RAG rationale, the complete R
 
 ## 6.1 AI Philosophy (Unchanged)
 
-Accurate and well-stated — the "not a chatbot, a Knowledge Intelligence Platform" framing is consistent with the PRD's "AI Knowledge Operating Platform" positioning (D10). No issues.
+Accurate and well-stated — the "not a chatbot, a Knowledge Intelligence Platform" framing is consistent with the PRD's "AI Knowledge Operating Platform" positioning (D10). No issues..
 
 ## 6.2 High-Level AI Architecture (Corrected — naming collision and missing Gateway)
 
